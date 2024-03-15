@@ -1,5 +1,5 @@
 
-import setButtonNameSchema from "./setButtonNameSchema.js"
+import setInfoSchema from "./setInfoSchema.js"
 import cors from 'cors'
 import mongoose from 'mongoose'
 import express from 'express'
@@ -15,15 +15,15 @@ app.use(cors({origin: '*'}))
 const PORT = process.env.PORT  // Добавленная строка
 
 
-app.post('/setButtonName', async (req, res) => {
+app.post('/setInfo', async (req, res) => {
     try {
-        const {buttonName} = req.body
-        const post = await setButtonNameSchema.create({buttonName})
+        const {info} = req.body
+        const post = await setInfoSchema.create({info})
         res.json(post)
     }
 
     catch (e) {
-            res.status(500).json(e)
+        res.status(500).json({ error: 'Internal Server Error' })
     }
     
 })

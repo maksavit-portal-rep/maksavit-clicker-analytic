@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "maksavit-server",
+  "name": "maksavit-clicker-analytic",
   "builds": [
     {
       "src": "index.js",
