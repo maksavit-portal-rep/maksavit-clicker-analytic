@@ -17,14 +17,21 @@ const PORT = process.env.PORT  // Добавленная строка
 
 app.post('/setInfo', async (req, res) => {
     try {
-        const info = req.body
-        console.log(req.body)
-        const post = await setInfoSchema.create(info)
-        res.json(post)
-    }
+        const { tagName, userName, date } = req.body;
 
-    catch (e) {
-        res.status(500).json({ error: 'Internal Server Error' })
+        // Проверяем наличие обязательного поля tagName
+        if (!tagName) {
+            return res.status(400).json({ error: 'tagName is required' });
+        }
+
+        // Создаем новую запись в базе данных
+        const post = await setInfoSchema.create({ tagName, userName, date });
+        
+        res.json(post);
+    } catch (e) {
+        // Обработка ошибок
+        console.error('Error:', e);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
     
 })
