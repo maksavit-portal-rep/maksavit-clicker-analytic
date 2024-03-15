@@ -17,8 +17,9 @@ const PORT = process.env.PORT  // Добавленная строка
 
 app.post('/setInfo', async (req, res) => {
     try {
-        const {info} = req.body
-        const post = await setInfoSchema.create({info})
+        const info = req.body
+        console.log(req.body)
+        const post = await setInfoSchema.create(info)
         res.json(post)
     }
 
